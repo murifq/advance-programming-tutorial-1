@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("path")
+@RequestMapping("/product")
 public class ProductController{
 
     @Autowired
@@ -29,10 +29,10 @@ public class ProductController{
         return "redirect:list";
     }
     
-    @PostMapping("/list")
+    @GetMapping("/list")
     public String productListPage(Model model) {
         List<Product> allProducts = service.findAll();
         model.addAttribute("products", allProducts);
-        return "prodcutList";
+        return "productList";
     }  
 }
