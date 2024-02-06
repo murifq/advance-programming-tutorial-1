@@ -12,7 +12,7 @@ public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product){
-        product.setProductId();
+        product.setProductIdInc();
         productData.add(product);
         return product;
     }
