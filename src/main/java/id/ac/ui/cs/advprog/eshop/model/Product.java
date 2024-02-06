@@ -19,8 +19,8 @@ public class Product {
         return this.productId;
     }
 
-    public void setProductAttribute(Product product){
-        this.productName = product.productName;
-        this.productQuantity = product.productQuantity;
+    public void setProductAttribute(Product productParameter){
+        this.productName = productParameter.productName;
+        this.productQuantity = productParameter.productQuantity;
     }
 }

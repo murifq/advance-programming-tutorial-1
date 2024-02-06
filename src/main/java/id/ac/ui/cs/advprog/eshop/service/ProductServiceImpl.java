@@ -50,8 +50,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void setProductAttribute(Product product){
-        Product getProduct = productRepository.getProduct(product.getProductId());
-        getProduct.setProductAttribute(product);
+    public void setProductAttribute(Product productParameter){
+        Product getProduct = productRepository.getProduct(productParameter.getProductId());
+        getProduct.setProductAttribute(productParameter);
     }
 }
