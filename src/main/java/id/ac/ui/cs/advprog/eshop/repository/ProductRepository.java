@@ -12,6 +12,7 @@ public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product){
+        product.setProductId();
         productData.add(product);
         return product;
     }
@@ -19,4 +20,17 @@ public class ProductRepository {
     public Iterator<Product> findAll(){
         return productData.iterator();
     }
+
+    public Product deleteProduct(String productId){
+        for(int i = 0; i<productData.size(); i++){
+            Product product = productData.get(i);
+            if(product.getProductId().equals(productId)){
+                productData.remove(i);
+                return product;
+            }
+        }
+        return null;
+    }
+    
+
 }
