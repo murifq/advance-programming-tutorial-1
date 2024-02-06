@@ -5,7 +5,22 @@ import lombok.Setter;
 
 @Getter @Setter
 public class Product {
+    static int staticId;
     private String productId;
     private String productName;
     private int productQuantity;
+
+    public int setProductId(){
+        this.productId = Integer.toString(Product.staticId++);
+        return Product.staticId;
+    }
+
+    public String getProductId(){
+        return this.productId;
+    }
+
+    public void setProductAttribute(Product product){
+        this.productName = product.productName;
+        this.productQuantity = product.productQuantity;
+    }
 }
