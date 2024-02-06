@@ -18,4 +18,9 @@ public class Product {
     public String getProductId(){
         return this.productId;
     }
+
+    public void setProductAttribute(Product product){
+        this.productName = product.productName;
+        this.productQuantity = product.productQuantity;
+    }
 }

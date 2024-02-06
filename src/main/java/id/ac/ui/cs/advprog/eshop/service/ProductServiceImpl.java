@@ -37,6 +37,21 @@ public class ProductServiceImpl implements ProductService {
         }else{
             return false;
         }
-        
+    }
+
+    @Override
+    public Product getProduct(String productId){
+        Product getProduct = productRepository.getProduct(productId);
+        if(getProduct != null){
+            return getProduct;
+        }else{
+            return null;
+        }
+    }
+
+    @Override
+    public void setProductAttribute(Product product){
+        Product getProduct = productRepository.getProduct(product.getProductId());
+        getProduct.setProductAttribute(product);
     }
 }
