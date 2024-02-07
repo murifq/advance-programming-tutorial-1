@@ -10,10 +10,13 @@ public class Product {
     private String productName;
     private int productQuantity;
 
-
-
     public String getProductId(){
         return this.productId;
+    }
+    static public String getStaticId(){
+        int staticId = Product.staticId;
+        Product.staticId++;
+        return Integer.toString(staticId);
     }
     public String getProductName(){
         return this.productName;

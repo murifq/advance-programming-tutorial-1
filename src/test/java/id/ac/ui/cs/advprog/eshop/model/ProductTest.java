@@ -29,4 +29,16 @@ class ProductTest{
         assertEquals(100, this.product.getProductQuantity());
     }
 
+    @Test
+    void testEditProduct(){
+        Product productParameter = new Product();
+        productParameter.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        productParameter.setProductName("Sampo Cap Udin");
+        productParameter.setProductQuantity(200);
+        product.setProductAttribute(productParameter);
+
+        assertEquals("eb558e9f-1c39-460e-8860-71af6af63bd6", this.product.getProductId());
+        assertEquals("Sampo Cap Udin", this.product.getProductName());
+        assertEquals(200, this.product.getProductQuantity());
+    }
 }
