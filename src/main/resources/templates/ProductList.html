@@ -23,6 +23,7 @@
         </thead>
         <tbody>
         <tr th:each="product: ${products}">
+
             <td th:text="${product.productName}"></td>
             <td th:text="${product.productQuantity}"></td>
 
@@ -34,7 +35,7 @@
             <td>
                 <a th:href="@{/product/edit/{productId}(productId=${product.productId})}" class="btn btn-primary btn-sm mb-3">edit</a>
             </td>
-            
+
         </tr>
         </tbody>
     </table>
