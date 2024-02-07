@@ -10,17 +10,45 @@ public class Product {
     private String productName;
     private int productQuantity;
 
-    public int setProductId(){
-        this.productId = Integer.toString(Product.staticId++);
-        return Product.staticId;
-    }
-
     public String getProductId(){
         return this.productId;
     }
 
-    public void setProductAttribute(Product productParameter){
-        this.productName = productParameter.productName;
-        this.productQuantity = productParameter.productQuantity;
+    static public String getStaticId(){
+        int staticId = Product.staticId;
+        Product.staticId++;
+        return Integer.toString(staticId);
+    }
+
+    public String getProductName(){
+        return this.productName;
+    }
+
+    public int getProductQuantity(){
+        return this.productQuantity;
+    }
+
+
+    public  void setProductId(String productId){
+        this.productId = productId;
+    }
+
+    public void setProductName(String productName){
+        this.productName = productName;
+    }
+
+    public void setProductQuantity(int productQuantity){
+        this.productQuantity = productQuantity;
+    }
+
+    public boolean setProductAttribute(Product productParameter){
+        int productQuantity = productParameter.productQuantity;
+        if(productQuantity > 0){
+            this.productName = productParameter.productName;
+            this.productQuantity = productParameter.productQuantity;
+            return true;
+        }else{
+            return false;
+        }
     }
 }
