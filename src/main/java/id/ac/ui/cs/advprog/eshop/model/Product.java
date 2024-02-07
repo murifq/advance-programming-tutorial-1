@@ -43,7 +43,7 @@ public class Product {
 
     public boolean setProductAttribute(Product productParameter){
         int productQuantity = productParameter.productQuantity;
-        if(productQuantity > 0){
+        if(productQuantity >= 0){
             this.productName = productParameter.productName;
             this.productQuantity = productParameter.productQuantity;
             return true;
