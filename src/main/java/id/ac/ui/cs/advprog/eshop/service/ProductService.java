@@ -8,5 +8,5 @@ public interface ProductService{
     public List<Product> findAll();
     public Boolean deleteProduct(String productId);
     public Product getProduct(String productId);
-    public void setProductAttribute(Product product);
+    public boolean setProductAttribute(Product product);
 }

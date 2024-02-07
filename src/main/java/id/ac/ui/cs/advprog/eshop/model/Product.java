@@ -37,8 +37,14 @@ public class Product {
         return Product.staticId;
     }
 
-    public void setProductAttribute(Product productParameter){
-        this.productName = productParameter.productName;
-        this.productQuantity = productParameter.productQuantity;
+    public boolean setProductAttribute(Product productParameter){
+        int productQuantity = productParameter.productQuantity;
+        if(productQuantity > 0){
+            this.productName = productParameter.productName;
+            this.productQuantity = productParameter.productQuantity;
+            return true;
+        }else{
+            return false;
+        }
     }
 }
