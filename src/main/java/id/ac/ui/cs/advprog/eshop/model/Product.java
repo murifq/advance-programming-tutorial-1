@@ -13,17 +13,14 @@ public class Product {
     public String getProductId(){
         return this.productId;
     }
-
     static public String getStaticId(){
         int staticId = Product.staticId;
         Product.staticId++;
         return Integer.toString(staticId);
     }
-
     public String getProductName(){
         return this.productName;
     }
-
     public int getProductQuantity(){
         return this.productQuantity;
     }
@@ -32,13 +29,15 @@ public class Product {
     public  void setProductId(String productId){
         this.productId = productId;
     }
-
     public void setProductName(String productName){
         this.productName = productName;
     }
-
     public void setProductQuantity(int productQuantity){
         this.productQuantity = productQuantity;
+    }
+    public int setProductIdInc(){
+        this.productId = Integer.toString(Product.staticId++);
+        return Product.staticId;
     }
 
     public boolean setProductAttribute(Product productParameter){
