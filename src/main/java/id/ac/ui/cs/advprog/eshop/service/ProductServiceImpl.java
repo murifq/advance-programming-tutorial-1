@@ -17,7 +17,13 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(Product product){
-        productRepository.create(product);
+        if(product.getProductId() == null){
+            String productId = Product.getStaticId();
+            product.setProductId(productId);
+            productRepository.create(product);
+        }else{
+            productRepository.create(product);
+        }
         return product;
     }
 
