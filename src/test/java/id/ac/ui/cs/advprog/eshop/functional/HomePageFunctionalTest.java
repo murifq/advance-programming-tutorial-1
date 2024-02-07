@@ -15,7 +15,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith(SeleniumJupiter.class)
-class HomePageFunctoinalTest{
+class HomePageFunctionalTest{
     /**
      * The port number assigned to the running application during test execution.
      * Set automitically during each test run by Spring Framework's test context.
@@ -56,4 +56,5 @@ class HomePageFunctoinalTest{
         // Verify
         assertEquals("Welcome", welcomeMessage);
     }
+
 }
