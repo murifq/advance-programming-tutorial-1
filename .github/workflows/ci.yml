@@ -1,9 +1,11 @@
-name: Continuous Integration (CI)
+name : Continuous Integration (CI)
 
-# Run CI jobs on all branches by default
+## Run CI jobs on all branches by default
+
 on:
   push:
   pull_request:
+
 jobs:
   test:
     name: Run tests
@@ -18,4 +20,4 @@ jobs:
           java-version: "21"
           cache: "gradle"
       - name: Run unit tests
-        uses: ./gradlew test
+        run: chmod +x ./gradlew &&./gradlew test
