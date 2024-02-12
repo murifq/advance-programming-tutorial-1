@@ -35,10 +35,6 @@ public class Product {
     public void setProductQuantity(int productQuantity){
         this.productQuantity = productQuantity;
     }
-    public int setProductIdInc(){
-        this.productId = Integer.toString(Product.staticId++);
-        return Product.staticId;
-    }
 
     public boolean setProductAttribute(Product productParameter){
         int productQuantity = productParameter.productQuantity;
