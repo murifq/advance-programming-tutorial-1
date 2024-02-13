@@ -31,7 +31,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
       - name: Build and run tests
-        run: ./gradlew test jacocoTestReport
+        run: chmod +x ./gradlew && ./gradlew test jacocoTestReport
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  # Needed to get PR information, if any
