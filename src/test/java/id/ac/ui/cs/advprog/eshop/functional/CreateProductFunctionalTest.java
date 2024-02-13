@@ -38,16 +38,6 @@ public class CreateProductFunctionalTest {
         baseUrl = String.format("%s:%d", testBaseUrl, serverPort);
     }
 
-//    @Test
-//    void productListButton_isCorrect(ChromeDriver driver) throws Exception{
-//        //  Exercise
-//        driver.get(baseUrl);
-//        String productListButtonText = driver.findElement(By.tagName("a")).getText();
-//
-//        // Verify
-//        assertEquals("Lihat Produk", productListButtonText);
-//    }
-
     @Test
     void productListButton_isWorking(ChromeDriver driver) throws Exception{
         driver.get(baseUrl + "/product/list");
