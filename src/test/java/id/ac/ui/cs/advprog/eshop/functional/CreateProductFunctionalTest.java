@@ -51,7 +51,6 @@ public class CreateProductFunctionalTest {
     @Test
     void productListButton_isWorking(ChromeDriver driver) throws Exception{
         driver.get(baseUrl + "/product/list");
-//        driver.findElement(By.className("btn")).click();
 
         String pageTitle = driver.getTitle();
         String pageTitleMessage = driver.findElement(By.tagName("h2")).getText();
@@ -67,11 +66,6 @@ public class CreateProductFunctionalTest {
     @Test
     void createProduct_isCorrect(ChromeDriver driver) throws Exception{
         driver.get(baseUrl + "/product/create");
-        // Product List Button clicked
-//        driver.findElement(By.className("btn")).click();
-
-        // Create Product Button clicked
-//        driver.findElement(By.className("btn")).click();
 
         String productName = "Ayam Kecap Angsa";
         int productQuantity = 1;
