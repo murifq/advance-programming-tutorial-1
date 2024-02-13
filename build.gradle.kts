@@ -14,6 +14,15 @@ val seleniumJupiterVersion = "5.0.1"
 val webdrivermanagerVersion = "5.6.3"
 val junitJupiterVersion = "5.9.1"
 
+sonar {
+	properties {
+		property("sonar.projectKey", "murifq_advance-programming-tutorial-1")
+		property("sonar.organization", "murifq")
+		property("sonar.host.url", "https://sonarcloud.io")
+		property ("sonar.login", System.getenv("SONAR_TOKEN"))
+	}
+}
+
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
 }
@@ -71,12 +80,12 @@ tasks.test{
 	}
 	finalizedBy(tasks.jacocoTestReport)
 }
-tasks.jacocoTestReport{
-	dependsOn(tasks.test)
-}
-
 tasks.jacocoTestReport {
+	dependsOn(tasks.test)
 	reports {
-		xml.required = true
+		xml.required.set(true)
+		csv.required.set(true)
+		html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
 	}
+
 }
