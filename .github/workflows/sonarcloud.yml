@@ -25,4 +25,6 @@ jobs:
             # mandatory
             -Dsonar.projectKey=murifq_advance-programming-tutorial-1
             -Dsonar.organization=murifq
+            -Dsonar.java.binaries=.
+
           # Comma-separated paths to dire
