@@ -41,4 +41,12 @@ class ProductTest{
         assertEquals("Sampo Cap Udin", this.product.getProductName());
         assertEquals(200, this.product.getProductQuantity());
     }
+
+    @Test
+    void testAutomaticGeneratedIdFromStaticId(){
+        Product.staticId = 0;
+        String firstProductId = "0";
+        String firstProductIdTest = Product.getStaticId();
+        assertEquals(firstProductId, firstProductIdTest);
+    }
 }

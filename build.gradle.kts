@@ -1,8 +1,17 @@
 plugins {
 	java
 	jacoco
+	id("org.sonarqube") version "4.4.1.3373"
 	id("org.springframework.boot") version "3.2.2"
 	id("io.spring.dependency-management") version "1.1.4"
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "murifq_advance-programming-tutorial-1")
+		property("sonar.organization", "murifq")
+		property("sonar.host.url", "https://sonarcloud.io")
+	}
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -12,6 +21,8 @@ val seleniumJavaVersion = "4.14.1"
 val seleniumJupiterVersion = "5.0.1"
 val webdrivermanagerVersion = "5.6.3"
 val junitJupiterVersion = "5.9.1"
+
+
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
@@ -64,12 +75,17 @@ tasks.withType<Test>().configureEach() {
 	useJUnitPlatform()
 }
 
-tasks.test{
-	filter{
-		excludeTestsMatching("*functionalTest")
+tasks.test {
+	filter {
+		excludeTestsMatching("*FunctionalTest")
 	}
 	finalizedBy(tasks.jacocoTestReport)
 }
-tasks.jacocoTestReport{
+
+tasks.jacocoTestReport {
 	dependsOn(tasks.test)
+	reports {
+		xml.required = true
+		html.required = true
+	}
 }
