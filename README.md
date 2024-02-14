@@ -1,4 +1,5 @@
-# _Reflection_ 1
+# _Module_ 1
+## _Reflection_ 1
 
 Terdapat beberapa aturan _clean code_ yang telah saya terapkan :
 
@@ -19,3 +20,13 @@ Dalam hal _secure coding_, saya menerapkan _private access modifier_ untuk _fiel
    * Salah satu caranya dapat menggunakan _tools_ yang dapat mengecek _code coverage_ dari _unit test_ kita. Salah satu _tools_ yang dapat digunakan di Java ada JaCoCo.
    * _Code coverage_ 100% memanglah baik. Namun, bukan berarti kode tersebut tidak memiliki kesalahan. Bisa saja terdapat _edge cases_ yag tidak dicek oleh _unit test._
 2. Salah satu masalah yang mungkin terjadi adalah penggunaan kode yang berulang. Karena hal yang dilakukan kurang lebih serupa pengerjaannya, maka akan ada kemungkinan kode yang dihasilkan akan tidak jauh berbeda dengan `CreateProductFunctionalTest.java`. Hal yang mungkin bisa dilakukan adalah dengan menaruh kode yang sering dilakukan berulang kali ke dalam sebuah _class_ atau fungsi, sehingga dapat digunakan di bagian kode lainnya.
+
+# _Module_ 2
+## _Reflection_
+1. Saya menemukan 2 _issues_ dalam program saya dengan menggunakan Sonarcloud, yaitu:
+   * Pengulangan penulisan kode
+      Saya menuliskan _redirect_ return pada `ProductController` sebanyak 3 kali. Yakni pada saat `"redirect:/product/list";
+     ` Oleh karena itu, saya membuat sebuah _constant variable_, yakni `REDIRECT_TO_PRODUCT_LIST`. Yang nantinya bisa dipakai di mana saja saat diperlukan. Hal tersebut lebih aman karena jika ada perubahan pada _redirect_, hanya perlu mengubah satu _constant variable_.
+   * Penggunaan _if-then statement_
+      Saya menggunakan _if-else statement_ untuk me-_return_ dua kemungkinan. Oleh karena itu, solusi saya adalaha hanya menggunakna 1 _if_ dan sisanya bisa langsung return di luar _if statement_
+2. Menurut saya, _CI/CD workflows_ yang saya buat telah memenuhi ketentuan _Continuous Integration and Continuous Deployment_. Dalam konsep _CI_, saya telah menerapkan _test_ dan _automation_ pada kode saya. Yang mana kedua hal tersebut merupakan salah dua hal terpenting pada _CI_. Pada tahap _CD_, saya telah menerakan otomatis _Deployment_ dengan PaaS Koyeb. Sehingga, setiap ada _push_ atau _merge_ ke _master branch_, akan melakukan deployment secara otomatis.
