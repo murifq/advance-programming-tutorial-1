@@ -71,8 +71,8 @@ jobs:
           args:
             # Unique keys of your project and organization. You can find them in SonarCloud > Information (bottom-left menu)
             # mandatory
-            -Dsonar.projectKey=rzapriono_tutorial-1
-            -Dsonar.organization=rzapriono
+            -Dsonar.projectKey=murifq_advance-programming-tutorial-1
+            -Dsonar.organization=murifq
             -Dsonar.java.binaries=.
             -Dsonar.sources=src/main/java
             -Dsonar.tests=src/test/java
