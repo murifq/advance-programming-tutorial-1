@@ -40,9 +40,8 @@ public class ProductServiceImpl implements ProductService {
         Product deletedProduct = productRepository.deleteProduct(productId);
         if(deletedProduct != null){
             return true;
-        }else{
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -50,19 +49,13 @@ public class ProductServiceImpl implements ProductService {
         Product getProduct = productRepository.getProduct(productId);
         if(getProduct != null){
             return getProduct;
-        }else{
-            return null;
         }
+        return null;
     }
 
     @Override
     public boolean setProductAttribute(Product productParameter){
         Product getProduct = productRepository.getProduct(productParameter.getProductId());
-        boolean successfulEdit = getProduct.setProductAttribute(productParameter);
-        if(successfulEdit == true){
-            return true;
-        }else{
-            return false;
-        }
+        return getProduct != null;
     }
 }

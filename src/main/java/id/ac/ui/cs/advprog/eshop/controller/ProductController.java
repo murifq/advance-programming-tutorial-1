@@ -15,7 +15,7 @@ public class ProductController{
 
     @Autowired
     private ProductService service;
-
+    String redirectToProductListPage = "redirect:/product/list";
     @GetMapping("/create")
     public String createProductPage(Model model) {
         Product product = new Product();
@@ -26,7 +26,7 @@ public class ProductController{
     @PostMapping("/create")
     public String createProductPost(@ModelAttribute Product product, Model model) {
         service.create(product);        
-        return "redirect:list";
+        return redirectToProductListPage;
     }
     
     @GetMapping("/list")
@@ -39,7 +39,7 @@ public class ProductController{
     @DeleteMapping("/delete/{productId}")
     public String deleteProduct(@PathVariable("productId") String productId, Model model) {
         service.deleteProduct(productId);
-        return "redirect:/product/list";
+        return redirectToProductListPage;
     }
 
     @GetMapping("/edit/{productId}")
@@ -52,6 +52,6 @@ public class ProductController{
     @PutMapping("/edit/{productId}")
     public String editProductPut(@PathVariable("productId") String productId, Product product, Model model) {
         service.setProductAttribute(product);
-        return "redirect:/product/list";
+        return redirectToProductListPage;
     }
 }
