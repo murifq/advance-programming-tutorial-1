@@ -26,8 +26,6 @@ public class ProductRepository {
             if(product.getProductId().equals(productId)){
                 productData.remove(i);
                 return product;
-            }else{
-                continue;
             }
         }
         return null;
@@ -38,8 +36,6 @@ public class ProductRepository {
             Product product = productData.get(i);
             if(product.getProductId().equals(productId)){
                 return product;
-            }else{
-                continue;
             }
         }
         return null;
