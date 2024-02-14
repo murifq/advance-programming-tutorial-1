@@ -1,9 +1,17 @@
 plugins {
 	java
 	jacoco
+	id("org.sonarqube") version "4.4.1.3373"
 	id("org.springframework.boot") version "3.2.2"
 	id("io.spring.dependency-management") version "1.1.4"
-	id("org.sonarqube") version "4.4.1.3373"
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "murifq_advance-programming-tutorial-1")
+		property("sonar.organization", "murifq")
+		property("sonar.host.url", "https://sonarcloud.io")
+	}
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -67,26 +75,17 @@ tasks.withType<Test>().configureEach() {
 	useJUnitPlatform()
 }
 
-tasks.test{
-	filter{
+tasks.test {
+	filter {
 		excludeTestsMatching("*FunctionalTest")
 	}
 	finalizedBy(tasks.jacocoTestReport)
 }
+
 tasks.jacocoTestReport {
 	dependsOn(tasks.test)
 	reports {
-		xml.required.set(true)
-		csv.required.set(true)
-		html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
-	}
-
-}
-
-sonar {
-	properties {
-		property("sonar.projectKey", "murifq_advance-programming-tutorial-1")
-		property("sonar.organization", "murifq")
-		property("sonar.host.url", "https://sonarcloud.io")
+		xml.required = true
+		html.required = true
 	}
 }
