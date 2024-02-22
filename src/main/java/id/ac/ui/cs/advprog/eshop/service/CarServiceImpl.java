@@ -8,13 +8,14 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class CarSeviceImpl implements CarService{
+public class CarServiceImpl implements CarService{
     @Autowired
     private CarRepository carRepository;
     @Override
     public Car create(Car car){
         // TODO Auto-generated method stub
         carRepository.create(car);
+        return car;
     }
     @Override
     public List<Car> findAll(){
