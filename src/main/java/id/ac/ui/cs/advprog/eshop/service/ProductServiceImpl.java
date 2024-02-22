@@ -54,7 +54,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean setProductAttribute(Product productParameter){
+    public Boolean setProductAttribute(Product productParameter){
         Product getProduct = productRepository.getProduct(productParameter.getProductId());
         return getProduct != null;
     }
