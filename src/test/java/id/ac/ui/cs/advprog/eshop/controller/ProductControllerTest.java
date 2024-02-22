@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.controller;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.service.CarServiceImpl;
 import id.ac.ui.cs.advprog.eshop.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -22,7 +23,8 @@ class ProductControllerTest {
 
     @MockBean
     private ProductService productService;
-
+    @MockBean
+    private CarServiceImpl carService;
     @Test
     public void testCreateProductPage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/product/create"))
