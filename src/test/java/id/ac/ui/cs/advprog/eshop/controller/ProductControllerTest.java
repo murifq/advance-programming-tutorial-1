@@ -62,7 +62,6 @@ class ProductControllerTest {
     @Test
     public void testDeleteProduct() throws Exception {
         String productId = "0";
-        Mockito.when(productService.deleteProduct(productId)).thenReturn(true);
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/product/delete/{productId}", productId))
                 .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
@@ -73,7 +72,7 @@ class ProductControllerTest {
     public void testEditProductPage() throws Exception {
         String productId = "0";
         Product product = new Product();
-        Mockito.when(productService.getProduct(productId)).thenReturn(product);
+        Mockito.when(productService.findById(productId)).thenReturn(product);
 
         mockMvc.perform(MockMvcRequestBuilders.get("/product/edit/{productId}", productId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -85,7 +84,7 @@ class ProductControllerTest {
     public void testEditProductPut() throws Exception {
         String productId = "1";
         Product product = new Product();
-        Mockito.when(productService.setProductAttribute(product)).thenReturn(true);
+//        Mockito.when(productService.setProductAttribute(product)).thenReturn(true);
 
         mockMvc.perform(MockMvcRequestBuilders.put("/product/edit/{productId}", productId)
                         .flashAttr("product", product))

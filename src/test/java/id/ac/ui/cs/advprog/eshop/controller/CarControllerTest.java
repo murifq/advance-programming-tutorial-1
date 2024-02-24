@@ -86,7 +86,7 @@ class CarControllerTest {
     public void testEditCarPost() throws Exception {
         // Create a Car object with necessary attributes for testing
         Car car = new Car();
-        car.setCarId("0"); // Replace with the appropriate values for testing
+        car.setId("0"); // Replace with the appropriate values for testing
 
         // Perform the POST request
         mockMvc.perform(MockMvcRequestBuilders.post("/car/editCar")

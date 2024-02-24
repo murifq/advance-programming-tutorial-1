@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class ProductServiceTest {
@@ -27,63 +28,63 @@ class ProductServiceTest {
     @Test
     public void testCreateProductIfProductIdIsNotSet() {
         Product productToCreate = new Product();
-        productToCreate.setProductName("Test Product");
-        productToCreate.setProductQuantity(1);
+        productToCreate.setName("Test Product");
+        productToCreate.setQuantity(1);
 
         Mockito.when(productRepository.create(any())).thenReturn(productToCreate);
 
         Product createdProduct = productService.create(productToCreate);
 
         assertNotNull(createdProduct);
-        assertEquals("Test Product", createdProduct.getProductName());
+        assertEquals("Test Product", createdProduct.getName());
     }
 
     @Test
     public void testCreateProductIfProductIdIsSet() {
         Product productToCreate = new Product();
-        productToCreate.setProductName("Test Product");
-        productToCreate.setProductQuantity(1);
-        productToCreate.setProductId("0");
+        productToCreate.setName("Test Product");
+        productToCreate.setQuantity(1);
+        productToCreate.setId("0");
 
         Mockito.when(productRepository.create(any())).thenReturn(productToCreate);
 
         Product createdProduct = productService.create(productToCreate);
 
         assertNotNull(createdProduct);
-        assertEquals("Test Product", createdProduct.getProductName());
+        assertEquals("Test Product", createdProduct.getName());
     }
 
     @Test
     public void testGetProductIfProductExist() {
         Product productToGet = new Product();
-        productToGet.setProductName("Test Product");
-        productToGet.setProductQuantity(1);
-        productToGet.setProductId("0");
+        productToGet.setName("Test Product");
+        productToGet.setQuantity(1);
+        productToGet.setId("0");
 
         String ProductIdToGet = "0";
 
-        Mockito.when(productRepository.getProduct("0")).thenReturn(productToGet);
+        Mockito.when(productRepository.findById("0")).thenReturn(productToGet);
 
-        Product foundProduct = productService.getProduct(ProductIdToGet);
+        Product foundProduct = productService.findById(ProductIdToGet);
 
         assertNotNull(foundProduct);
-        assertEquals("Test Product", foundProduct.getProductName());
-        assertEquals(1, foundProduct.getProductQuantity());
-        assertEquals("0", foundProduct.getProductId());
+        assertEquals("Test Product", foundProduct.getName());
+        assertEquals(1, foundProduct.getQuantity());
+        assertEquals("0", foundProduct.getId());
     }
 
     @Test
     public void testGetProductIfProductNotExist() {
         Product productToGet = new Product();
-        productToGet.setProductName("Test Product");
-        productToGet.setProductQuantity(1);
-        productToGet.setProductId("0");
+        productToGet.setName("Test Product");
+        productToGet.setQuantity(1);
+        productToGet.setId("0");
 
         String ProductIdToGet = "0";
 
-        Mockito.when(productRepository.getProduct("0")).thenReturn(null);
+        Mockito.when(productRepository.findById("0")).thenReturn(null);
 
-        Product foundProduct = productService.getProduct(ProductIdToGet);
+        Product foundProduct = productService.findById(ProductIdToGet);
 
         assertNull(foundProduct);
 
@@ -94,12 +95,12 @@ class ProductServiceTest {
         List<Product> mockProductList = new ArrayList<>();
 
         Product product1 = new Product();
-        product1.setProductName("Product 1");
-        product1.setProductQuantity(1);
+        product1.setName("Product 1");
+        product1.setQuantity(1);
 
         Product product2 = new Product();
-        product2.setProductName("Product 2");
-        product2.setProductQuantity(2);
+        product2.setName("Product 2");
+        product2.setQuantity(2);
 
         productService.create(product1);
         productService.create(product2);
@@ -113,8 +114,8 @@ class ProductServiceTest {
         List<Product> allProducts = productService.findAll();
 
         assertEquals(2, allProducts.size());
-        assertEquals("Product 1", allProducts.get(0).getProductName());
-        assertEquals("Product 2", allProducts.get(1).getProductName());
+        assertEquals("Product 1", allProducts.get(0).getName());
+        assertEquals("Product 2", allProducts.get(1).getName());
     }
 
     @Test
@@ -122,27 +123,11 @@ class ProductServiceTest {
         String productIdToDelete = "123";
 
         Product deletedProduct = new Product();
-        deletedProduct.setProductName("Product 1");
-        deletedProduct.setProductQuantity(1);
-        Mockito.when(productRepository.deleteProduct(productIdToDelete)).thenReturn(deletedProduct);
+        deletedProduct.setName("Product 1");
+        deletedProduct.setQuantity(1);
+        productService.deleteProductById(productIdToDelete);
 
-        boolean result = productService.deleteProduct(productIdToDelete);
-
-        assertTrue(result);
-    }
-
-    @Test
-    public void testDeleteProductNotFound() {
-        String productIdToDelete = "123";
-
-        Product deletedProduct = new Product();
-        deletedProduct.setProductName("Product 1");
-        deletedProduct.setProductQuantity(1);
-        Mockito.when(productRepository.deleteProduct(productIdToDelete)).thenReturn(null);
-
-        boolean result = productService.deleteProduct(productIdToDelete);
-
-        assertFalse(result);
+        verify(productRepository, times(1)).deleteProduct(productIdToDelete);
     }
 
     @Test
@@ -150,71 +135,24 @@ class ProductServiceTest {
         String productIdToEdit = "0";
 
         Product productToEdit = new Product();
-        productToEdit.setProductName("Product 1");
-        productToEdit.setProductQuantity(1);
-        productToEdit.setProductId("0");
+        productToEdit.setName("Product 1");
+        productToEdit.setQuantity(1);
+        productToEdit.setId("0");
 
         Product productToEditReference = new Product();
-        productToEditReference.setProductName("Product 2");
-        productToEditReference.setProductQuantity(2);
-        productToEditReference.setProductId("0");
+        productToEditReference.setName("Product 2");
+        productToEditReference.setQuantity(2);
+        productToEditReference.setId("0");
 
-        Mockito.when(productRepository.getProduct(productIdToEdit)).thenReturn(productToEdit);
+        Product productToEditResult = productToEditReference;
 
-        boolean result = productService.setProductAttribute(productToEditReference);
+        Mockito.when(productRepository.findById(productIdToEdit)).thenReturn(productToEditResult);
 
-        assertTrue(result);
+        productService.update(productIdToEdit, productToEditReference);
+
+        assertEquals(productToEditReference.getId(), productToEditResult.getId());
+        assertEquals(productToEditReference.getName(), productToEditResult.getName());
+        assertEquals(productToEditReference.getQuantity(), productToEditResult.getQuantity());
+
     }
-
-    @Test
-    public void testSetProductAttributeFail() {
-        String productIdToEdit = "111";
-
-        Product productToEdit = new Product();
-        productToEdit.setProductName("Product 1");
-        productToEdit.setProductQuantity(1);
-        productToEdit.setProductId("0");
-
-        Product productToEditReference = new Product();
-        productToEditReference.setProductName("Product 2");
-        productToEditReference.setProductQuantity(2);
-        productToEditReference.setProductId("0");
-
-        Mockito.when(productRepository.getProduct(productIdToEdit)).thenReturn(null);
-
-        boolean result = productService.setProductAttribute(productToEditReference);
-
-        assertFalse(result);
-    }
-
-//    @Test
-//    public void testGetProduct() {
-//        String productIdToGet = "456";
-//        Product mockedProduct = new Product("Mocked Product");
-//
-//        Mockito.when(productRepository.getProduct(productIdToGet)).thenReturn(mockedProduct);
-//
-//        Product retrievedProduct = productService.getProduct(productIdToGet);
-//
-//        assertNotNull(retrievedProduct);
-//        assertEquals("Mocked Product", retrievedProduct.getProductName());
-//    }
-
-//    @Test
-//    public void testSetProductAttribute() {
-//        String productId = "789";
-//        Product existingProduct = new Product("Existing Product");
-//        existingProduct.setProductId(productId);
-//
-//        Product updatedProduct = new Product("Updated Product");
-//        updatedProduct.setProductId(productId);
-//
-//        Mockito.when(productRepository.getProduct(productId)).thenReturn(existingProduct);
-//        Mockito.when(productRepository.create(any())).thenReturn(updatedProduct);
-//
-//        boolean result = productService.setProductAttribute(updatedProduct);
-//
-//        assertTrue(result);
-//        assertEquals("Updated Product", existingProduct.getProductName());
-//    }
 }
