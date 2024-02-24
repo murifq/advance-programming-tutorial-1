@@ -39,20 +39,14 @@ Dalam hal _secure coding_, saya menerapkan _private access modifier_ untuk _fiel
    * Single Responsibility Principle (SRP)
       Saya telah memisahkan _class_ Product dan Car. Hal tersebut lebih memudahkan karena apabila dibutuhkan untuk mengubah salah satunya, kemungkinannya kecil untuk mengubah _Class_ yang tidak perlu diubah. 
    * Liskov Substitution Principle (LSP)
-      Saat ini, saya telah mengubah _Class_ `Car` menjadi _child_ dari _Class_ `Product`. Semua yang dimiliki oleh _Class_ `product` juga dimiliki oleh _Class_ `Car` 
+      Saat ini, saya telah mengubah _Class_ `Car` menjadi _child_ dari _Class_ `Product`. Semua yang dimiliki oleh _Class_ `product` juga dimiliki oleh _Class_ `Car`
    * Dependency Inversions Principle (DIP)
       Saya telah mengubah _dependency_ pada `CarController.java`. Saat ini, pada `CarController.java` menggunakan `carService` dibandingkan implementasi dari `carService`. 
 2. Menurut saya, ada beberapa manfaat dari diterapkannya SOLID, yaitu:
-   * Memudahkan untuk mengubah beberapa bagian dari kodingan kedepannya. Karena _dependency_ nya telah diminimalisasi.
-   * Lebih mudah untuk memahami kodingan yang telah saya buat.
-   * Menghindari masalah-masalah yang mungkin terjadi, seperti sulitnya program dibaca, efisiensi, dll.
-   * Kode menjadi lebih mudah untuk dikelola dan diperbaiki kedepannya.
-   * Mudah untuk membuat testing.
-   * Mudah untuk mengembangkan kode kedepannya.
+   * **Mengurangi pengulangan kode yang sama**. Dapat dilihat contohnya pada kode saya di branch `after-solid`, dengan class `Car` menjadi _subclass_ dari clsas `Product`, saya tidak perlu menulis semua _field_ yang telah ada di `Product` untuk ditulis lagi di `Car`
+   * **Memudahkan keterbacaan kode**. Contohnya dalam tugas saya di branch `after-solid` adalah pemisahan `CarController` dengan `ProductController`. Dengan dipisahkan kedua _class_ tersebut, keterbacaannya menjadi lebih baik karena kita dapat mengetahui tujuan dari kodenya hanya dengan melihat nama filenya saja.
+   * **Memudahkan untuk melakukan pengembangan kode**. Sebagai contoh di branch `after-solid`, saya memisahkan kode yang berkaitan dengan `Product` dengan kode yang berkaitan dengan `Car`. Sehingga, apabila kedepannya diperlukan perubahan pada salah satunya saja, tidak diperlukan untuk mengubah keseluruhan kode.
 3. Menurut saya ada beberapa kelemahan dari tidak diterapkannya SOLID, yaitu:
-   * Sulit untuk mengubah hanya beberapa bagian dari kode. Pengubahan satu bagian dari kode, dapat menyebabkan bagian lain dari kode juga perlu diubah.
-   * Sulit dibaca dan dipahami kode yang telah dibuat.
-   * Dapat terjadi masalah-masalah kedepannya.
-   * Sulit untuk memperbaiki kode apabila terdapat kesalahan.
-   * Sulit untuk membangun testing
-   * Kesulitan untuk mengembangkan proyek dalam kodenya.
+   * **Banyaknya pengulangan kode yang sama**. Dapat dilihat contohnya pada kode saya di branch `before-solid`, dengan class `Car` tidak menjadi _subclass_ dari clsas `Product`, saya perlu menulis semua _field_ yang telah ada di `Product` untuk ditulis lagi di `Car`
+   * **Menyulitkan keterbacaan kode**. Contohnya dalam tugas saya di branch `before-solid` adalah penggabungan file `CarController` dengan `ProductController`. Dengan digabungkan kedua _class_ tersebut, keterbacaannya menjadi lebih buruk karena kita harus membacanya isi kode nya terlebih dahulu untuk dapat mengetahui tujuan dari kodenya.
+   * **Kesulitan melakukan testing**. Contohnya dalam tugas saya di branch `before-solid` adalah bedanya implementasi kode yang berkaitan dengan `Product` dan `Car`. Sehingga, apabila saya ingin menerapkan _testing_, saya harus memahami kedua jenis kode yang _logic_-nya berbeda terlebih dahulu dan menyulitkan.
