@@ -32,3 +32,18 @@ Dalam hal _secure coding_, saya menerapkan _private access modifier_ untuk _fiel
    * Penggunaan _if-then statement_
       Saya menggunakan _if-else statement_ untuk me-_return_ dua kemungkinan. Oleh karena itu, solusi saya adalah dengan menggunakan `==` sehingga langsung mengecek kesamaan dan ketidaksamaan.
 2. Menurut saya, _CI/CD workflows_ yang saya buat telah memenuhi ketentuan _Continuous Integration and Continuous Deployment_. Dalam konsep _CI_, saya telah menerapkan _test_ dan _automation_ pada kode saya. Yang mana kedua hal tersebut merupakan salah dua hal terpenting pada _CI_. Pada tahap _CD_, saya telah menerakan otomatis _Deployment_ dengan PaaS Koyeb. Sehingga, setiap ada _push_ atau _merge_ ke _master branch_, akan melakukan deployment secara otomatis.
+
+# _Module_ 3
+## _Reflection_
+1. Saya telah menerapkan setidak 3 prinsip SOLID, yaitu:
+   * Single Responsibility Principle (SRP)
+      Saya telah memisahkan _class_ Product dan Car. Hal tersebut lebih memudahkan karena apabila dibutuhkan untuk mengubah salah satunya, kemungkinannya kecil untuk mengubah _Class_ yang tidak perlu diubah. 
+   * Liskov Substitution Principle (LSP)
+      Saat ini, saya telah mengubah _Class_ `Car` menjadi _child_ dari _Class_ `Product`. Semua yang dimiliki oleh _Class_ `product` juga dimiliki oleh _Class_ `Car` 
+   * Dependency Inversions Principle (DIP)
+      Saya telah mengubah _dependency_ pada `CarController.java`. Saat ini, pada `CarController.java` menggunakan `carService` dibandingkan implementasi dari `carService`. 
+2. Menurut saya, ada beberapa manfaat dari diterapkannya SOLID, yaitu:
+   * Memudahkan untuk mengubah beberapa bagian dari kodingan kedepannya. Karena _dependency_ nya telah diminimalisasi.
+   * Lebih mudah untuk memahami kodingan yang telah saya buat.
+   * Menghindari masalah-masalah yang mungkin terjadi, seperti sulitnya program dibaca, efisiensi, dll.
+   * Kode menjadi lebih mudah untuk dikelola dan diperbaiki kedepannya
