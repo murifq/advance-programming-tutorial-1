@@ -46,4 +46,13 @@ Dalam hal _secure coding_, saya menerapkan _private access modifier_ untuk _fiel
    * Memudahkan untuk mengubah beberapa bagian dari kodingan kedepannya. Karena _dependency_ nya telah diminimalisasi.
    * Lebih mudah untuk memahami kodingan yang telah saya buat.
    * Menghindari masalah-masalah yang mungkin terjadi, seperti sulitnya program dibaca, efisiensi, dll.
-   * Kode menjadi lebih mudah untuk dikelola dan diperbaiki kedepannya
+   * Kode menjadi lebih mudah untuk dikelola dan diperbaiki kedepannya.
+   * Mudah untuk membuat testing.
+   * Mudah untuk mengembangkan kode kedepannya.
+3. Menurut saya ada beberapa kelemahan dari tidak diterapkannya SOLID, yaitu:
+   * Sulit untuk mengubah hanya beberapa bagian dari kode. Pengubahan satu bagian dari kode, dapat menyebabkan bagian lain dari kode juga perlu diubah.
+   * Sulit dibaca dan dipahami kode yang telah dibuat.
+   * Dapat terjadi masalah-masalah kedepannya.
+   * Sulit untuk memperbaiki kode apabila terdapat kesalahan.
+   * Sulit untuk membangun testing
+   * Kesulitan untuk mengembangkan proyek dalam kodenya.
