@@ -30,7 +30,7 @@ class CarControllerTest {
     public void testCreateCarPage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/car/createCar"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("createCar"));
+                .andExpect(MockMvcResultMatchers.view().name("CreateCar"));
     }
 
 
@@ -56,7 +56,7 @@ class CarControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/car/listCar"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("carList"))
+                .andExpect(MockMvcResultMatchers.view().name("CarList"))
                 .andExpect(MockMvcResultMatchers.model().attribute("cars", cars));
     }
 
@@ -78,7 +78,7 @@ class CarControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.get("/car/editCar/{carId}", carId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("editCar"))
+                .andExpect(MockMvcResultMatchers.view().name("EditCar"))
                 .andExpect(MockMvcResultMatchers.model().attribute("car", car));
     }
 

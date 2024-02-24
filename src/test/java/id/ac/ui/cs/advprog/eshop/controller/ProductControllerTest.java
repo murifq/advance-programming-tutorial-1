@@ -81,14 +81,14 @@ class ProductControllerTest {
     }
 
     @Test
-    public void testEditProductPut() throws Exception {
-        String productId = "1";
+    public void testEditProductPost() throws Exception {
+        String productId = "0";
         Product product = new Product();
-//        Mockito.when(productService.setProductAttribute(product)).thenReturn(true);
+        Mockito.when(productService.findById(productId)).thenReturn(product);
 
-        mockMvc.perform(MockMvcRequestBuilders.put("/product/edit/{productId}", productId)
-                        .flashAttr("product", product))
-                .andExpect(MockMvcResultMatchers.status().is3xxRedirection())
+        mockMvc.perform(MockMvcRequestBuilders.post("/product/edit/{productId}", productId)
+                .flashAttr("product", product))
                 .andExpect(MockMvcResultMatchers.redirectedUrl("/product/list"));
+
     }
 }
