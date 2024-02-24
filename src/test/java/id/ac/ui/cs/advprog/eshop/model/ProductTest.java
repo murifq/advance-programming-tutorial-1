@@ -10,43 +10,33 @@ class ProductTest{
     @BeforeEach
     void setUp(){
         this.product = new Product();
-        this.product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        this.product.setProductName("Sampo Cap Bambang");
-        this.product.setProductQuantity(100);
+        this.product.setId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        this.product.setName("Sampo Cap Bambang");
+        this.product.setQuantity(100);
     }
     @Test
-    void testGetProductId(){
-        assertEquals("eb558e9f-1c39-460e-8860-71af6af63bd6", this.product.getProductId());
-    }
-
-    @Test
-    void testGetProductName(){
-        assertEquals("Sampo Cap Bambang", this.product.getProductName());
+    void testgetId(){
+        assertEquals("eb558e9f-1c39-460e-8860-71af6af63bd6", this.product.getId());
     }
 
     @Test
-    void testGetProductQuantity(){
-        assertEquals(100, this.product.getProductQuantity());
+    void testgetName(){
+        assertEquals("Sampo Cap Bambang", this.product.getName());
     }
 
     @Test
-    void testEditProduct(){
-        Product productParameter = new Product();
-        productParameter.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        productParameter.setProductName("Sampo Cap Udin");
-        productParameter.setProductQuantity(200);
-        product.setProductAttribute(productParameter);
-
-        assertEquals("eb558e9f-1c39-460e-8860-71af6af63bd6", this.product.getProductId());
-        assertEquals("Sampo Cap Udin", this.product.getProductName());
-        assertEquals(200, this.product.getProductQuantity());
+    void testgetQuantity(){
+        assertEquals(100, this.product.getQuantity());
     }
 
     @Test
-    void testAutomaticGeneratedIdFromStaticId(){
-        Product.staticId = 0;
-        String firstProductId = "0";
-        String firstProductIdTest = Product.getStaticId();
-        assertEquals(firstProductId, firstProductIdTest);
+    void testSetProductAttribute(){
+        product.setId("1");
+        product.setName("a");
+        product.setQuantity(2);
+
+        assertEquals("1", product.getId());
+        assertEquals("a", product.getName());
+        assertEquals(2, product.getQuantity());
     }
 }

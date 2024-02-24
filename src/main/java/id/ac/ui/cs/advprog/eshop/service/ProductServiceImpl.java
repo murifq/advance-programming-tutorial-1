@@ -17,13 +17,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product create(Product product){
-        if(product.getProductId() == null){
-            String productId = Product.getStaticId();
-            product.setProductId(productId);
-            productRepository.create(product);
-        }else{
-            productRepository.create(product);
-        }
+        productRepository.create(product);
         return product;
     }
 
@@ -36,26 +30,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Boolean deleteProduct(String productId){
-        Product deletedProduct = productRepository.deleteProduct(productId);
-        if(deletedProduct != null){
-            return true;
-        }
-        return false;
+    public void deleteProductById(String productId){
+        productRepository.deleteProduct(productId);
     }
 
     @Override
-    public Product getProduct(String productId){
-        Product getProduct = productRepository.getProduct(productId);
-        if(getProduct != null){
-            return getProduct;
-        }
-        return null;
+    public Product findById(String productId){
+        Product product = productRepository.findById(productId);
+        return product;
     }
 
     @Override
-    public Boolean setProductAttribute(Product productParameter){
-        Product getProduct = productRepository.getProduct(productParameter.getProductId());
-        return getProduct != null;
+    public void update(String productId, Product productParameter){
+        productRepository.update(productId, productParameter);
     }
 }
