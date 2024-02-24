@@ -25,7 +25,6 @@ class ProductRepositoryTest {
     @Test
     void testCreateAndFind() {
         Product product = new Product();
-        product.setId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product.setName("Sampo Cap Bambang");
         product.setQuantity(100);
         productRepository.create(product);
