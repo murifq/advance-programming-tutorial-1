@@ -16,8 +16,9 @@ public class Payment {
     String method;
     String status;
     Map<String, String> paymentData;
+    Order order;
 
-    public Payment(String id, String method, Map<String, String> paymentData) {
+    public Payment(String id, String method, Map<String, String> paymentData, Order order) {
         this.id = id;
         this.paymentData = paymentData;
 
@@ -26,6 +27,7 @@ public class Payment {
             if(isPaymentDataByVoucherCodeFormatValid(paymentData) && isVoucherCodeValid(voucherCode)){
                 this.setMethod("VOUCHER_CODE");
                 this.setStatus("SUCCESS");
+                this.order = order;
             }else{
                 this.setStatus("REJECTED");
             }
@@ -36,6 +38,7 @@ public class Payment {
             if(isPaymentDataByCashOnDeliveryFormatValid(paymentData) && isAdressAndDeliveryFeeValid(address, deliveryFee)){
                 this.setMethod("CASH_ON_DELIVERY");
                 this.setStatus("SUCCESS");
+                this.order = order;
             }else{
                 this.setStatus("REJECTED");
             }
