@@ -47,7 +47,7 @@ public class PaymentRepositoryTest {
         paymentData.put("address", "Jl. Orchard");
         paymentData.put("deliveryFee", "1");
 
-        Payment paymentByCashOnDelivery = new Payment("13652556-012a-4c07-b546-54eb1396d79b", "CASH_ON_DELIVERY", paymentData, order2);
+        Payment paymentByCashOnDelivery = new Payment("23652556-012a-4c07-b546-54eb1396d79b", "CASH_ON_DELIVERY", paymentData, order2);
         payments.add(paymentByCashOnDelivery);
     }
 
@@ -88,7 +88,7 @@ public class PaymentRepositoryTest {
             paymentRepository.save(payment);
         }
 
-        Payment findResult = paymentRepository.findById(payments.get(1).getId());
+        Payment findResult = paymentRepository.findById(payments.get(0).getId());
         assertEquals(payments.get(0).getId(), findResult.getId());
         assertEquals(payments.get(0).getMethod(), findResult.getMethod());
         assertEquals(payments.get(0).getStatus(), findResult.getStatus());
@@ -113,6 +113,7 @@ public class PaymentRepositoryTest {
         }
 
         List<Payment> currentPayments = paymentRepository.findAll();
+        System.out.println("Line 116 "+payments.size());
         assertEquals(2, currentPayments.size());
     }
 
