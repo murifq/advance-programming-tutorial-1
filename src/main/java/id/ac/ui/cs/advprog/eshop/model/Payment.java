@@ -1,5 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
+import enums.PaymentStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,10 +27,10 @@ public class Payment {
             String voucherCode = paymentData.get("voucherCode");
             if(isPaymentDataByVoucherCodeFormatValid(paymentData) && isVoucherCodeValid(voucherCode)){
                 this.setMethod("VOUCHER_CODE");
-                this.setStatus("SUCCESS");
+                this.status = PaymentStatus.SUCCESS.getValue();
                 this.order = order;
             }else{
-                this.setStatus("REJECTED");
+                this.status = PaymentStatus.REJECTED.getValue();
             }
 
         }else if(method.equals("CASH_ON_DELIVERY")){
@@ -37,10 +38,10 @@ public class Payment {
             String deliveryFee = paymentData.get("deliveryFee");
             if(isPaymentDataByCashOnDeliveryFormatValid(paymentData) && isAdressAndDeliveryFeeValid(address, deliveryFee)){
                 this.setMethod("CASH_ON_DELIVERY");
-                this.setStatus("SUCCESS");
+                this.status = PaymentStatus.SUCCESS.getValue();
                 this.order = order;
             }else{
-                this.setStatus("REJECTED");
+                this.status = PaymentStatus.REJECTED.getValue();
             }
         }else{
             throw new IllegalArgumentException();
